@@ -3,19 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css"/>
     <title>Document</title>
 </head>
 <body>
-    
-    <div id ="root"> 
-        <script>
-            const heading= document.createElement("h1");
-            heading.innerHTML= "hello world from javascript";
-            const root = document.getElementById("root");
-            root.appendChild(heading); 
-        </script>
+    <div id="root"></div>
+        <!-- <--<h1>this is ankit here</h1> --> 
 
+        <!-- what will happen to it when we use root.render  => this will
+        replace the  h1tag and render the parent element that is written inside the script tag
+        app.js -->
     </div>
+
+
+
+
+
+    
+<!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
+
+
+<!-- =>cdn is not a good way t create react app -->
+
+<!-- <script> -->
+    
+    <!-- // //creating a element is the core of react so the "createElement comes from the rect.devlopment.js"
+
+    // const heading = React.createElement("h1", {}, "hello world from React");
+    // //we need to tell react what is the root to render stuff
+    // //react wants to have a root where it will do all the dom manipulation
+    // //but now crating a root and rendering something insite it is the job of react dom
+    // //REACTDOM is a library method
+    // const root = ReactDOM.createRoot(document.getElementById("root"));
+    // root.render(heading); -->
+<!-- </script> -->
+
+<!-- <script src="./app.js"></script>   => can we use crossorigin here -->
+<!-- this order matter   order of the script tag--> 
+<script  type="module" src="./src/app.js"></script>
+
 
 </body>
 </html>
+
+
+
+<!-- <html>
+    <head></head>
+<title></title>
+<body>
+    <div>this is ankit here from top</div>
+    <div id="root"><h1>ankit is inside root </h1></div>       => if the above code is wrriten in like this fashion then ankit from top & bottom
+     will render  while if we inject the script tag and we render the react dom it will be get replaced by the 
+     script tag content
+    <div>this is ankit here from botton </div>
+
+    =>react will onlt work on the div id root 
+</body>
+</html> -->

@@ -1,3 +1,11 @@
+//this whole file is same as app.js but due to some learning it has been changed to another 
+
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+
+
 const heading = React.createElement(
     "h1", {
         id:"headline"}, 
@@ -26,7 +34,7 @@ console.log(heading);
  */
 
 const parent = React.createElement("div",{id:"paarent"}, React.createElement("div", {id:"child"}, 
-React.createElement("h1", {}, "i am h1 tag")
+React.createElement("h1", {}, "Hello from ANKIT through react")
 ));
 
 // imorder to have two sibblings
@@ -49,7 +57,7 @@ React.createElement("div", {id:"child1"}, [
 //this looks ugly so we use jsx 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent2);
+root.render(parent);
 
 
 
