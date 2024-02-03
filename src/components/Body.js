@@ -1,25 +1,75 @@
 import RestaurantCard from "./RestaurantCard";
 import { apiresponse} from "../utils/mockdata";
-import { useState } from "react";
+import { useState , useEffect } from "react";
+import Shimmer from "./Shimmer";
+
+
 const Body=()=>{
-  const[List , setList]= useState(apiresponse);
-    return(
+  const[List , setList]= useState([]);
+  const [filtered, setfiltered] = useState([])
+  const [searchtext, setsearchtext] = useState("")
+  useEffect(()=>{
+    fetchdata();
+  },[]);
+
+  const fetchdata= async()=>{
+    const data =  await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=27.1766701&lng=78.00807449999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    // console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+    setList(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+    setfiltered(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+};
+//con
+// if(List.length===0){
+//   return <Shimmer/>;
+// }
+
+//m-2
+
+
+    return  List.length===0 ? <Shimmer/>: (
     <div className="body">
-        <div className="filter">
+        <div className="filter"> 
+        <div className="search">
+          <input type="text" className="search-box" value={searchtext} 
+            onChange={(e)=>{
+              console.log(searchtext);
+              setsearchtext(e.target.value);
+            }}
+          />
+          <button onClick={(e)=>{
+            //filter byy name
+            //searchtext
+            console.log(List);
+            const filteredres= List.filter((res)=>{
+              return res?.info?.name.toLowerCase().includes(searchtext.toLowerCase())
+          });
+            console.log(filteredres);
+            setfiltered(filteredres);
+          }
+
+          }>Search</button>
+        </div>
             <button className="filter-btn" 
             onClick={()=>{
-                //filter logic here
-                console.log(apiresponse);
-                 const filtered = List.filter((res)=>parseInt(res.price)>200);
+                // filter logic here
+                // console.log(apiresponse);  
+                // console.log(List);
+                 const filtered = List.filter((res)=>(res?.info?.sla?.deliveryTime)>30);
+                 console.log(filtered);
                 setList(filtered);
             }}> 
             Top Rated Restaurant </button>
         </div>
         <div className="res-container">
-        {List.map((restaurant) =><
-        RestaurantCard key={restaurant.id} resData={restaurant}/>)}
+        {filtered.map((restaurant) =><RestaurantCard  resData={restaurant}/>)}
+        
          </div>
+         
     </div>)
 };
 
 export default Body;
+
+// {List.map((restaurant) => <RestaurantCard key={restaurant.id} resData={restaurant} />)}
