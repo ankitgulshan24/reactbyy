@@ -58,7 +58,7 @@ const Body=()=>{
                 // console.log(List);
                  const filtered = List.filter((res)=>(res?.info?.sla?.deliveryTime)>30);
                  console.log(filtered);
-                setList(filtered);
+                setfiltered(filtered);
             }}> 
             Top Rated Restaurant </button>
         </div>
