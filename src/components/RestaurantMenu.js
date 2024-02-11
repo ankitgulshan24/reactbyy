@@ -36,7 +36,7 @@ const RestaurantMenu= ()=>{
 
    
 
-    const {itemCards}=resinfo.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[2].card.card
+    const {itemCards}=resinfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
 
     
     return (
